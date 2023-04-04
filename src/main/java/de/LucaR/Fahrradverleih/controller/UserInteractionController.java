@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.LucaR.Fahrradverleih.dao.UserLoginObject;
-import de.LucaR.Fahrradverleih.dao.UserRegistrationObject;
+import de.LucaR.Fahrradverleih.dao.UserRegistrationsObject;
 import de.LucaR.Fahrradverleih.entities.User;
 import de.LucaR.Fahrradverleih.repositories.BookingRepository;
 import de.LucaR.Fahrradverleih.repositories.UserRepository;
@@ -47,7 +47,7 @@ public class UserInteractionController {
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<Object> register(@RequestBody UserRegistrationObject uro){
+	public ResponseEntity<Object> register(@RequestBody UserRegistrationsObject uro){
 		
 		boolean alreadyExists = false;
 		

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.LucaR.Fahrradverleih.dao.UserConfigurationObject;
+import de.LucaR.Fahrradverleih.dao.UserConfigurationsObject;
 import de.LucaR.Fahrradverleih.entities.User;
 import de.LucaR.Fahrradverleih.repositories.UserRepository;
 
@@ -48,7 +48,7 @@ public class UserController {
 	}
 		
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody UserConfigurationObject uco){
+	public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody UserConfigurationsObject uco){
 		
 		Optional<User> toUpdate = userRepository.findById(id);
 		User u = new User();

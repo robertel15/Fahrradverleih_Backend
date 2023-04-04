@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Backand.Fahrradverlei.dao.FahrradConfigurationsObject;
-import Backand.Fahrradverlei.entities.Fahrrad;
-import Backand.Fahrradverlei.entities.Standort;
-import Backand.Fahrradverlei.repositories.FahrradRepository;
-import Backand.Fahrradverlei.repositories.StandortRepository;
+import de.LucaR.Fahrradverleih.dao.FahrradConfigurationsObject;
+import de.LucaR.Fahrradverleih.entities.Fahrrad;
+import de.LucaR.Fahrradverleih.entities.Standort;
+import de.LucaR.Fahrradverleih.repositories.FahrradRepository;
+import de.LucaR.Fahrradverleih.repositories.StandortRepository;
 
 
 
