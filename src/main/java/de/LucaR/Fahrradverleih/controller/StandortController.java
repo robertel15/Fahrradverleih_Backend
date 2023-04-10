@@ -38,6 +38,11 @@ public class StandortController {
 		return new ResponseEntity<>(standortrepository.findAll(),HttpStatus.OK);	
 	}
 	
+	@GetMapping("/seckenheim")
+	public String hello() {
+		return "Hier wohnt mein Frontend-Löwe! ROOAR";
+	}
+	
 	@GetMapping("{id}")
 	public ResponseEntity<Object> getStandort(@PathVariable UUID id) {
 		Optional<Standort> standort = standortrepository.findById(id);
