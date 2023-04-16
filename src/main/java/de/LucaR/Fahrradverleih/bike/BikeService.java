@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.LucaR.Fahrradverleih.location.Location;
+import de.LucaR.Fahrradverleih.location.LocationRepository;
 import de.LucaR.Fahrradverleih.user.User;
 
 @Service

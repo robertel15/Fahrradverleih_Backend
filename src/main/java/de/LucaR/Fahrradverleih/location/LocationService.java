@@ -8,18 +8,30 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.LucaR.Fahrradverleih.bike.Bike;
+import de.LucaR.Fahrradverleih.bike.BikeRepository;
+
 @Service
 public class LocationService {
 
 	private final LocationRepository locationRepository;
+	private final BikeRepository bikeRepository;
 	
 	@Autowired
-	public LocationService(LocationRepository locationRepository) {
+	public LocationService(LocationRepository locationRepository, BikeRepository bikeRepository) {
 		this.locationRepository = locationRepository;
+		this.bikeRepository = bikeRepository;
 	}
 	
 	public List<Location> getLocations() {
 		return locationRepository.findAll();
+	}
+	
+	public List<Bike> getBikesAtLocation(UUID locationId) {
+		
+		Location l = locationRepository.findById(locationId).get();
+		
+		return bikeRepository.findAllByLocation(l).get();
 	}
 
 	public void addNewLocation(Location location) {
