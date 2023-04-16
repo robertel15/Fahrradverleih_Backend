@@ -90,8 +90,7 @@ public class BookingService {
 		booking.setBookingDate(bookingDate);
 		booking.setReturnDate(returnDate);
 		booking.setBookingDone(bookingDone);
-		booking.setUser(user);
-		booking.setBike(bike);
+		
 	}
 
 	public Booking getBookingsReturned(UUID id, UUID returnLocationId) {
