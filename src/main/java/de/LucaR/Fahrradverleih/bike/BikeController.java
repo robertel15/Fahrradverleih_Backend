@@ -36,9 +36,14 @@ public class BikeController {
 		return bikeService.getAvailableBikes();
 	}
 	
+//	@PostMapping("") Bisher ist der Fehler nicht auffindbar der immer zurückschmeißt "Given ID must not be null"
+//	public Bike registerNewBike(@RequestBody BikeConfig bike) {
+//		return bikeService.addNewBike(bike);
+//	}
+	
 	@PostMapping("")
-	public void registerNewBike(@RequestBody Bike bike) {
-		bikeService.addNewBike(bike);
+	public Bike registerNewBike(@RequestBody Bike bike) {
+		return bikeService.addNewBike(bike);
 	}
 	
 	@DeleteMapping("{bikeId}")

@@ -1,6 +1,5 @@
 package de.LucaR.Fahrradverleih.bike;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -13,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -40,6 +38,12 @@ public class Bike {
 	@Column//(nullable=false)
 	@NotNull
 	private BikeType type;
+	@Column
+	@NotNull
+	private String pictureLink;
+	@Column
+	@NotNull
+	private String bikeDescription;
 
 	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.MERGE)
 	@NotFound(action=NotFoundAction.IGNORE)
@@ -50,13 +54,30 @@ public class Bike {
 		
 	}
 
-	public Bike(String name, double price, boolean isAvailable, Location location, BikeType type) {
+	public Bike(UUID id, @NotNull String name, @NotNull double price, boolean isAvailable, @NotNull BikeType type,
+			@NotNull String pictureLink, @NotNull String bikeDescription, Location location) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.isAvailable = isAvailable;
+		this.type = type;
+		this.pictureLink = pictureLink;
+		this.bikeDescription = bikeDescription;
+		this.location = location;
+	}
+
+
+
+	public Bike(@NotNull String name, @NotNull double price, boolean isAvailable, @NotNull BikeType type,
+			@NotNull String bikeDescription, Location location) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.isAvailable = isAvailable;
-		this.location = location;
 		this.type = type;
+		this.bikeDescription = bikeDescription;
+		this.location = location;
 	}
 
 	/*public Long getId() {
@@ -113,6 +134,23 @@ public class Bike {
 	public void setType(BikeType type) {
 		this.type = type;
 	}
+	
+	public String getPictureLink() {
+		return pictureLink;
+	}
+
+	public void setPictureLink(String pictureLink) {
+		this.pictureLink = pictureLink;
+	}
+	
+	public String getBikeDescription() {
+		return bikeDescription;
+	}
+
+	public void setBikeDescription(String bikeDescription) {
+		this.bikeDescription = bikeDescription;
+	}
+
 
 	@Override
 	public String toString() {

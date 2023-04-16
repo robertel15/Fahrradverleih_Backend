@@ -26,6 +26,9 @@ public class BookingService {
 	private final LocationRepository locationRepository;
 	
 	@Autowired
+	BookingMail mailService;
+	
+	@Autowired
 	public BookingService(BookingRepository bookingRepository, UserRepository userRepository, BikeRepository bikeRepository, LocationRepository locationRepository) {
 		this.bookingRepository = bookingRepository;
 		this.userRepository = userRepository;
@@ -58,6 +61,15 @@ public class BookingService {
 				toAdd.setUser(user);
 				toAdd.setBike(bike);
 				toAdd.setLocation_start(start);
+				
+
+
+				mailService.sendMailBooking(
+						user.getEmail(),
+						"Buchung bestätigt!",
+						user.getFirstName(),
+						bike.getName()
+				);
 				
 				return bookingRepository.save(toAdd);
 				

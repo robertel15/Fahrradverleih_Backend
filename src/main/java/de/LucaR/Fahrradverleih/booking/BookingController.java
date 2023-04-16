@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.LucaR.Fahrradverleih.bike.Bike;
-import de.LucaR.Fahrradverleih.location.Location;
-import de.LucaR.Fahrradverleih.user.User;
-
 @RestController
 @RequestMapping("api/v1/booking")
 public class BookingController {
