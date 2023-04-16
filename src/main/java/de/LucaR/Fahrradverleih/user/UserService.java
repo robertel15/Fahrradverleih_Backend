@@ -1,6 +1,7 @@
 package de.LucaR.Fahrradverleih.user;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -75,10 +76,10 @@ public class UserService {
 				throw new IllegalStateException("Falsches Passwort");
 			}
 		} catch(NoSuchElementException e) {
-			return new ResponseEntity<Object>("Kein Benutzer mit dieser Email gefunden", HttpStatus.NOT_FOUND);
+			throw new IllegalStateException("Kein Benutzer mit dieser Email gefunden");
 		}
 		
-		return new ResponseEntity<Object>(u, HttpStatus.OK);
+		return u;
 	}
 	
 	//
