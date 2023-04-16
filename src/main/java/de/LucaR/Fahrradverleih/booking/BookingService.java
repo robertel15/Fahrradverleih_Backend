@@ -10,25 +10,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.LucaR.Fahrradverleih.bike.Bike;
+import de.LucaR.Fahrradverleih.bike.BikeRepository;
+import de.LucaR.Fahrradverleih.location.Location;
+import de.LucaR.Fahrradverleih.location.LocationRepository;
 import de.LucaR.Fahrradverleih.user.User;
+import de.LucaR.Fahrradverleih.user.UserRepository;
 
 @Service
 public class BookingService {
 
 	private final BookingRepository bookingRepository;
+	private final UserRepository userRepository;
+	private final BikeRepository bikeRepository;
+	private final LocationRepository locationRepository;
 	
 	@Autowired
-	public BookingService(BookingRepository bookingRepository) {
+	public BookingService(BookingRepository bookingRepository, UserRepository userRepository, BikeRepository bikeRepository, LocationRepository locationRepository) {
 		this.bookingRepository = bookingRepository;
+		this.userRepository = userRepository;
+		this.bikeRepository = bikeRepository;
+		this.locationRepository = locationRepository;
 	}
 	
 	public List<Booking> getBookings() {
 		return bookingRepository.findAll();
 	}
 
-	public void addNewBooking(Booking booking) {
+	/*public void addNewBooking(Booking booking) {
 		// TODO Auto-generated method stub
 		bookingRepository.save(booking);
+	}*/
+	
+	public Booking addNewBooking(BookingConfig booking) {
+		
+		User user = userRepository.findById(booking.userID).get();
+		Bike bike = bikeRepository.findById(booking.bikeID).get();
+		Location start = locationRepository.findById(booking.locationID_start).get();
+				
+				bike.setLocation(null);
+				bikeRepository.save(bike);
+				Booking toAdd = new Booking();
+				
+				toAdd.setReturnDate(booking.returnDate);
+				toAdd.setBookingDate(booking.bookingDate);
+				toAdd.setBookingDone(booking.bookingDone);
+				toAdd.setUser(user);
+				toAdd.setBike(bike);
+				toAdd.setLocation_start(start);
+				
+				return bookingRepository.save(toAdd);
+				
 	}
 
 	public void deleteBooking(UUID bookingId) {

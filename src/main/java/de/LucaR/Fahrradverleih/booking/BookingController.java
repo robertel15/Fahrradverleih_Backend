@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.LucaR.Fahrradverleih.bike.Bike;
+import de.LucaR.Fahrradverleih.location.Location;
+import de.LucaR.Fahrradverleih.user.User;
+
 @RestController
 @RequestMapping("api/v1/booking")
 public class BookingController {
@@ -29,9 +33,14 @@ public class BookingController {
 		return bookingService.getBookings();
 	}
 	
-	@PostMapping("")
+	/*@PostMapping("")
 	public void registerNewBooking(@RequestBody Booking booking) {
 		bookingService.addNewBooking(booking);
+	}*/
+	
+	@PostMapping("")
+	public Booking addBooking(@RequestBody BookingConfig booking){
+		return bookingService.addNewBooking(booking);
 	}
 	
 	@DeleteMapping("{bookingId}")

@@ -18,9 +18,6 @@ import org.jetbrains.annotations.NotNull;
 @Entity
 @Table(name = "user")
 public class User {
-	/*@Id
-	@Column
-	private Long id;*/
 	@Id
 	@Column(columnDefinition= "VARBINARY(16)")
 	@GeneratedValue(strategy = GenerationType.AUTO)
