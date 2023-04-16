@@ -2,6 +2,7 @@ package de.LucaR.Fahrradverleih.booking;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -79,6 +80,26 @@ public class BookingService {
 		booking.setBookingDone(bookingDone);
 		booking.setUser(user);
 		booking.setBike(bike);
+	}
+
+	public Booking getBookingsReturned(UUID id, UUID returnLocationId) {
+		
+		try {
+			Booking booking = bookingRepository.findById(id).get();
+			Bike bike = booking.getBike();
+			Location location = locationRepository.findById(returnLocationId).get();
+			
+			bike.setLocation(location);
+			bike.setAvailable(true);
+			bikeRepository.save(bike);
+			booking.setLocation_end(location);
+			booking.setBookingDone(true);
+			
+			return bookingRepository.save(booking);
+		}
+		catch(NoSuchElementException e) {
+			throw new IllegalStateException("Fehler bei der Rückgabe, bitte überprüfe die Eingabe der Parameter sorgfältig.");
+		}
 	}
 
 	

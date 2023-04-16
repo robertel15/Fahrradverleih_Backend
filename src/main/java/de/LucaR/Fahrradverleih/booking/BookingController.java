@@ -33,6 +33,12 @@ public class BookingController {
 		return bookingService.getBookings();
 	}
 	
+	@GetMapping("/return/{id}/{returnLocationId}")
+	public Booking returnBike(@PathVariable UUID id, @PathVariable UUID returnLocationId) {
+		
+		return bookingService.getBookingsReturned(id, returnLocationId);
+	}
+	
 	/*@PostMapping("")
 	public void registerNewBooking(@RequestBody Booking booking) {
 		bookingService.addNewBooking(booking);
